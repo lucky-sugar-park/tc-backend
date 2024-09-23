@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>com.mymes.equip</groupId>
+  	<artifactId>control-parent</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<packaging>pom</packaging>
+  	<name>Equipment Control</name>
+  	<url>http://maven.apache.org/</url>
+        
+  	<!--<distributionManagement>
+    	<site>
+      		<id>website</id>
+      		<url>scp://webhost.company.com/www/website</url>
+    	</site>
+  	</distributionManagement>-->
+  
+  	<properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<java.version>17</java.version>
+    	<maven.compiler.source>17</maven.compiler.source>
+    	<maven.compiler.target>17</maven.compiler.target>
+  	</properties>
+
+  	<parent>
+    	<groupId>org.springframework/boot</groupId>
+    	<artifactId>spring-boot-starter-parent</artifactId>
+    	<version>3.3.3</version>
+  	</parent>
+  
+  	<modules>
+    	<module>tc</module>
+    	<module>vplc</module>
+    	<module>web-admin</module>
+    	<module>sample-server</module>
+  	</modules>
+</project>
