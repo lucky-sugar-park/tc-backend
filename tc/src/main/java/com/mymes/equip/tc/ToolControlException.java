@@ -15,4 +15,9 @@ public class ToolControlException extends Exception {
 	public ToolControlException(Throwable th) {
 		super(th);
 	}
+	
+	public ToolControlException(String message, Throwable th) {
+		super(message, th);
+	}
 }
+
