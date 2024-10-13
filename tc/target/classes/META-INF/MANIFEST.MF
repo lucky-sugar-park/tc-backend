@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Built-By: insoo67.park
-Build-Jdk: 17.0.4.1
+Built-By: Administrator
+Build-Jdk: 17.0.6
 Implementation-Title: Tool Control
 Implementation-Version: 1.0
 Implementation-Vendor-Id: com.mymes.equip
