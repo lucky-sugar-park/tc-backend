@@ -9,9 +9,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.mymes.equip.tc.ToolControlException;
 import com.mymes.equip.tc.auth.AuthService;
 import com.mymes.equip.tc.auth.LoginRequest;
 import com.mymes.equip.tc.auth.SecurityUser;
+import com.mymes.equip.tc.user.UserHistoryInfo;
 import com.mymes.equip.tc.user.UserInfo;
 import com.mymes.equip.tc.user.UserService;
 
@@ -57,7 +59,11 @@ public class AuthServiceImpl implements AuthService {
 
 		uInfo.setLogined(true);
 		uInfo.setLoginedIp(loginRequest.getRemoteAddress());
-		userService.updateUser(uInfo);
+		try {
+			userService.updateUser(uInfo, "LOGIN");
+		} catch (ToolControlException e) {
+			e.printStackTrace();
+		}
 
 		return suser;
 	}
@@ -137,14 +143,21 @@ public class AuthServiceImpl implements AuthService {
 		}
 
 		Optional<JwRefreshTokenEntity> optional = jwRefreshTokenRepository.findById(refreshToken);
+		// delete refresh token information
 		jwRefreshTokenRepository.deleteById(refreshToken);
 		if (optional.isEmpty() || !refreshToken.equals(optional.get().getRefreshToken())) {
 			throw new InvalidTokenException("Different refresh token.");
 		}
+
 		// update user information
-		// delete refresh token information
-		
-		userService.updateUser(null);
+		try {
+			UserInfo uInfo = userService.findUserById(userId);
+			uInfo.setLogined(false);
+			uInfo.setLoginedIp("");
+			userService.updateUser(uInfo, "LOGOUT");
+		} catch (ToolControlException e) {
+			e.printStackTrace();
+		}
 		
 	}
 }

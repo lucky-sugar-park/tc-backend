@@ -28,10 +28,10 @@ public class UserHistoryEntity extends PersistentEntity<UserHistoryInfo> {
 	@Column(name="SEQ_NO")
 	private Long seqNo;
 
-	@Column(name="USER_ID")
+	@Column(name="USER_ID", nullable=false)
 	private String userId;
 
-	@Column(name="OPER")
+	@Column(name="OPER", nullable=false)
 	private String oper;
 
 	@Column(name="TIMESTAMP")

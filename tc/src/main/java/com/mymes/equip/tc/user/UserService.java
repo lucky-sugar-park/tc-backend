@@ -2,11 +2,25 @@ package com.mymes.equip.tc.user;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public interface UserService {
+import com.mymes.equip.tc.ToolControlException;
 
-	public UserInfo findUserById(String id) throws UsernameNotFoundException; 
+public interface UserService {
 	
-	public UserInfo findUserByEmail(String email) throws UsernameNotFoundException;
+	public abstract void recordUserHistory(UserHistoryInfo uhInfo);
+
+	public abstract void requestUserRegistion(UserInfo uInfo) throws ToolControlException;
 	
-	public void updateUser(UserInfo uInfo);
+	public abstract void approveUserRegistration(String userId) throws ToolControlException;
+	
+	public abstract void releaseUserRegistration(String userId) throws ToolControlException;
+	
+	public abstract void updateUser(UserInfo uInfo, String operation) throws ToolControlException;
+
+	public abstract UserInfo findUserById(String id) throws UsernameNotFoundException;
+	
+	public abstract UserInfo findUserByEmail(String email) throws UsernameNotFoundException;
+	
+	public abstract void deleteUser(String userId) throws ToolControlException;
+	
+	public abstract boolean checkIfUserIdExist(String userId);
 }
