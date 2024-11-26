@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService, PersistentService<UserInfo,
 		log.debug("");
 		// Target user
 		UserInfo uInfo = null;
-		if (uhInfo.getRemark() == null) {
+		if (uhInfo.getRemark() == null || "".equals(uhInfo.getRemark())) {
 			uInfo = this.findUserById(uhInfo.getUserId());
 			uhInfo.setRemark(uInfo.toJson(false));
 		}
@@ -46,16 +46,17 @@ public class UserServiceImpl implements UserService, PersistentService<UserInfo,
 			if (authentication != null) {
 				// Worker user on current context
 				uInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getDetails();
-				uhInfo.setUserId(uInfo.getId());
-				uhInfo.setCreatedBy(uInfo.getId());
-				uhInfo.setUpdatedBy(uInfo.getId());
-				uhInfo.setIpAddress(uInfo.getLoginedIp());
-				
-				UserHistoryEntity uhEntity = new UserHistoryEntity();
-				uhEntity.from(uhInfo);
-
-				userHistoryRepository.save(uhEntity);
+				if(uInfo != null) {
+					uhInfo.setUserId(uInfo.getId());
+					uhInfo.setCreatedBy(uInfo.getId());
+					uhInfo.setUpdatedBy(uInfo.getId());
+					uhInfo.setIpAddress(uInfo.getLoginedIp());
+				}
 			}
+			UserHistoryEntity uhEntity = new UserHistoryEntity();
+			uhEntity.from(uhInfo);
+
+			userHistoryRepository.save(uhEntity);
 		} catch (Throwable t) {
 			log.warn("", t);
 		}
@@ -141,7 +142,7 @@ public class UserServiceImpl implements UserService, PersistentService<UserInfo,
 		user.from(uInfo);
 		userRepository.save(user);
 		
-		UserHistoryInfo uhInfo = this.createUserHistoryInfo(uInfo, null);
+		UserHistoryInfo uhInfo = this.createUserHistoryInfo(uInfo, uInfo.getId());
 		uhInfo.setOper(operation);
 		this.recordUserHistory(uhInfo);
 	}
