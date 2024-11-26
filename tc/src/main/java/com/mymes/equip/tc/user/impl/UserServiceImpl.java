@@ -46,14 +46,16 @@ public class UserServiceImpl implements UserService, PersistentService<UserInfo,
 			if (authentication != null) {
 				// Worker user on current context
 				uInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getDetails();
+				uhInfo.setUserId(uInfo.getId());
 				uhInfo.setCreatedBy(uInfo.getId());
 				uhInfo.setUpdatedBy(uInfo.getId());
 				uhInfo.setIpAddress(uInfo.getLoginedIp());
-			}
-			UserHistoryEntity uhEntity = new UserHistoryEntity();
-			uhEntity.from(uhInfo);
+				
+				UserHistoryEntity uhEntity = new UserHistoryEntity();
+				uhEntity.from(uhInfo);
 
-			userHistoryRepository.save(uhEntity);
+				userHistoryRepository.save(uhEntity);
+			}
 		} catch (Throwable t) {
 			log.warn("", t);
 		}
