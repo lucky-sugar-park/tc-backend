@@ -89,6 +89,8 @@ public class UserEntity extends PersistentEntity<UserInfo>{
 		this.setEmail(info.getEmail());
 		this.setPhone(info.getPhone());
 		this.setExtraInfo(info.getExtraInfo());
+		this.setLogined(info.getLogined());
+		this.setLoginedIp(info.getLoginedIp());
 		this.setEnabled(info.getEnabled()==null?false:info.getEnabled());
 		this.setCreatedBy(info.getCreatedBy());
 		this.setCreatedDate(info.getCreatedDate());
