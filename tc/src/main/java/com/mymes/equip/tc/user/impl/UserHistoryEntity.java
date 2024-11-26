@@ -69,7 +69,7 @@ public class UserHistoryEntity extends PersistentEntity<UserHistoryInfo> {
 	@Override
 	public void from(UserHistoryInfo info) {
 		if(info.getSeqNo()!=null) this.setSeqNo(info.getSeqNo());
-		if(info.getUserId()!=null) this.setUserId(this.getUserId());
+		if(info.getUserId()!=null) this.setUserId(info.getUserId());
 		this.setOper(info.getOper());
 		this.setTimestamp(info.getTimestamp());
 		this.setIpAddress(info.getIpAddress());
