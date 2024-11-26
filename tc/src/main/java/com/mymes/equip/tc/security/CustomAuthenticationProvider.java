@@ -6,6 +6,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,6 +48,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			UsernamePasswordAuthenticationToken usernamePasswordAuthentication = 
 					new UsernamePasswordAuthenticationToken(username, password, userDetails.getAuthorities());
 			usernamePasswordAuthentication.setDetails(userDetails);
+			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthentication);
 			return usernamePasswordAuthentication;
 		} else {
 //			// 암호가 일치하지 않으면 AuthenticationException 형식의 예외 발생
