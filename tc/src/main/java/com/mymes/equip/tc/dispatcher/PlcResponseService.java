@@ -11,12 +11,12 @@ public class PlcResponseService {
 	@Autowired
 	private PlcResponseRepository plcResponseRepository;
 
-	@CachePut(cacheNames="plcResponse", key="#id")
+	@CachePut(cacheNames="plcResponse", key="#id", unless="#result == null")
 	public void put(String id, PlcResponseEntity plcResponseEntity) {
 //		plcResponseRepository.save(plcResponseEntity);
 	}
 	
-	@Cacheable(cacheNames="plcResponse", key="#id")
+	@Cacheable(cacheNames="plcResponse", key="#id", unless="#result == null")
 	public PlcResponseEntity get(String id) {
 //		return plcResponseRepository.findById(id).orElse(null);
 		return null;
