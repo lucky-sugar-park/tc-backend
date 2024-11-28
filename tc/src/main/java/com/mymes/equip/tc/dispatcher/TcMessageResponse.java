@@ -1,5 +1,6 @@
 package com.mymes.equip.tc.dispatcher;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mymes.equip.tc.msg.Message;
 
@@ -20,11 +21,11 @@ public class TcMessageResponse extends Message {
 		super();
 	}
 
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private boolean replyArrived;
+	@JsonIgnore
+	private Boolean replyArrived;
 
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private boolean success;
+	private Boolean success;
 
 	private boolean changed;
 
