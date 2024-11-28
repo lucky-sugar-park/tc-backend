@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Built-By: lucky
-Build-Jdk: 21.0.4
-Implementation-Title: Tool Control
-Implementation-Version: 1.0
-Implementation-Vendor-Id: com.mymes.equip
-Implementation-URL: http://maven.apache.org
-Created-By: Maven Integration for Eclipse
-
