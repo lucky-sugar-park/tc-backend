@@ -1,7 +1,6 @@
 package com.mymes.equip.tc.dispatcher;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mymes.equip.tc.msg.Message;
 
 import lombok.AllArgsConstructor;
