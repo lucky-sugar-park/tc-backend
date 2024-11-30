@@ -30,6 +30,7 @@
   	</parent>
   
   	<modules>
+  		<module>camunda-test</module>
     	<module>tc</module>
     	<module>vplc</module>
     	<module>web-admin</module>
