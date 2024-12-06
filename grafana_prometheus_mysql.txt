@@ -1,0 +1,38 @@
+1. grafana 설치
+2. prometheus 설치
+3. mysqld_exporter 다운로드 후 ( https://prometheus.io/download/#mysqld_exporter )
+   Prometheus MySQL Exporter를 설치하기 위해서는 다음과 같은 Python 관련 패키지를 미리 설치 해야 합니다.
+   -  Python 3.X 설치 : Python으로 개발한 프로그램을 설치하기 위해 필요.
+   -  mysqlclient-python 설치 : Python용 MySQL 클라이언트로 MySQL에 접속하기 위해 필요.
+   -  Prometheus Python Client 설치 : Prometheus 연동을 위한 Python 클라이언트
+   적절한 곳에 압축풀고 다음 실행
+   mysqld_exporter.exe --web.listen-address=:8080 --mysqld.username=exporter:1qazxsw2 --mysqld.address=localhost:3306 실행
+4. http://localhost:8080에 가면 메트릭스를 볼 수 있음
+
+# CREATE USER 'exporter'@'localhost' IDENTIFIED BY '1qazxsw2' WITH MAX_USER_CONNECTIONS 3;
+# SHOW DATABASES;
+# USE mysql;
+# SELECT USER, HOST FROM USER;
+# export DATA_SOURCE_NAME='exporter:1qazxsw2@localhost:3306/'
+# GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'localhost';
+# FLUSH PRIVILEGES;
+
+5. prometheus.yaml 파일 수정
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "mariadb"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:8080"]
+6. grafana에서 데이터소스를 prometheus로 지정 후에 대시보드를 생성할 수 있음
