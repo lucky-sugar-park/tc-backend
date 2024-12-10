@@ -5,3 +5,23 @@ camunda.bpm:
     firstName: Demo
   filter:
     create: All tasks
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/camunda_db
+    username: root
+    password: 1qazxsw2
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 60000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    #database-platform: org.hibernate.dialect.MariaDB103Dialect
+    #database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+      
