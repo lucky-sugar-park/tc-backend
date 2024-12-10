@@ -15,6 +15,7 @@
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${isHoliday}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:userTask id="UserTask_1" name="Pack for holiday" camunda:formKey="aaa">
+      <bpmn2:extensionElements />
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
     </bpmn2:userTask>
@@ -22,6 +23,7 @@
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${!isHoliday}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:userTask id="UserTask_2" name="Pack for work" camunda:formKey="bbb">
+      <bpmn2:extensionElements />
       <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
     </bpmn2:userTask>
@@ -33,7 +35,12 @@
       <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_6" name="" sourceRef="UserTask_1" targetRef="EndEvent_2" />
-    <bpmn2:userTask id="ServiceTask_1" name="Check if date is holiday" camunda:formKey="bbb">
+    <bpmn2:userTask id="ServiceTask_1" name="Check if date is holiday" camunda:formKey="/todo-list" camunda:assignee="ispark">
+      <bpmn2:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="isHoliday">${isHoliday}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
     </bpmn2:userTask>
