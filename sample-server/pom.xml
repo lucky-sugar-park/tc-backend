@@ -31,6 +31,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.camunda.community.rest/camunda-platform-7-rest-client-spring-boot-openapi -->
+		<!--<dependency>
+		    <groupId>org.camunda.community.rest</groupId>
+		    <artifactId>camunda-platform-7-rest-client-spring-boot-openapi</artifactId>
+		    <version>7.22.0</version>
+		</dependency>-->
+		<dependency>
+			<groupId>org.camunda.community</groupId>
+		    <artifactId>camunda-engine-rest-client-openapi-springboot</artifactId>
+		    <version>7.20.0</version>
+    	</dependency>
+
 		<dependency>
     		<groupId>org.springframework</groupId>
     		<artifactId>spring-core</artifactId>
