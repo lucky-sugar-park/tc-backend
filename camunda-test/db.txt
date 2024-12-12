@@ -13,3 +13,13 @@ POST http://localhost:8080/engine-rest/task/95d2fb17-b6c1-11ef-98af-f426792f43ff
         }
     }
 }
+
+{
+    "variables": [
+        {
+            "name": "STATE",
+            "value": "COMPLETED",
+            "operator": "eq"
+        }
+    ]
+}
